@@ -39,7 +39,8 @@ body {
 }
 
 .filterStringPB {
-  height: 350px;
+  height: 370px;
+  padding-bottom: 20px;
 }
 
 .palindromePB {

@@ -1,63 +1,62 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
 class FilterObject extends Component {
-    constructor() {
-        super();
-        this.state = {
-            unfilteredArray: [],
-            userInput: '',
-            filteredArray: [],
-            employees: [
-            {
-                name: 'Jenny',
-                age: 35,
-            },
-            {
-                name: 'Jimmy',
-                age: 32,
-            },
-            {
-                name: 'Sammy',
-                age: 47,
-            },
-            {
-                name: 'Sonny',
-                age:43,
-            },
-            ]
-        }
+  constructor() {
+    super();
+    this.state = {
+      unfilteredArray: [""],
+      userInput: "",
+      filteredArray: [],
+      names: 
+      [
+        {name: "James", age: 22},
+        {name:"Jessica", age: 67},
+        {name:"Melody",age: 24},
+        {name:"Tyler", age: 86},
+        {name:"Blake", age: 54},
+        {name:"Jennifer", age: 35},
+        {name:"Mark", age: 46},
+        {name:"Maddy", age: 19} 
+      ],
+    };
+  }
+  handleChange(val) {
+    this.setState({ userInput: val });
+    console.log(val)
+  }
+
+  filterNames = ()  => {
+    const names = this.state.names;
+    const input = this.state.userInput;
+    const inputName = names.map(name => Object.values(name)[0]);
+    // console.log(inputName)
+    const inputAge = names.map(age => Object.values(age)[1]);
+    // console.log(inputAge)
+
+    if (input === 'names') {
+        this.setState({filteredNames: inputName})
+        console.log(this.filterNames)
+    }else{
+        this.setState({filteredNames: inputAge})
     }
 
-handleChange (val) {
-    this.state({userInput: val});
-}
+  }
 
-filterEmployees(prop) {
-    let employees =  this.state.employees;
-    let filteredEmployees = []
-
-
-for (let i=0; i<employees.length; i++) {
-    if( employees[i].hasOwnPorperty(prop)) {
-        filteredEmployees.push(employees[i]);
-    }
-}
-
-this.setState({filterEmployees: filteredEmployees});
-}
-
-    render () {
-        return (
-<div className="puzzleBox filterObjectPB">
-
-    <h4>Filter Object</h4>
-    <span className="puzzleText">Original: { JSON.stringify(this.state.employees, null, 10)}</span>
-    <input className="inputLine" onChange={(e) => this.handleChange(e.target.value)}/>
-    <button className="confirmationButton" onClick={(e) => {this.buttonClick(this.state.userInput)}}>Filter</button>
-    <span className="resultsBox filterObjectRB">Filtered: {this.state.filteredEmployees, null, 10}</span>
-</div>
-        )
-    }
+  render() {
+    return (
+      <div className="puzzleBox filterStringPB">
+        <h4> Filter Object: </h4>
+        <p>Type in 'names' or 'age' to filter the object.</p>
+        <span className="puzzleText">{" "}Names: {JSON.stringify(this.state.names, null, 10)}{" "}</span>
+        <input className="inputLine"onChange={(e) => this.handleChange(e.target.value)}></input>
+        <button className="confirmationButton"onClick={this.filterNames}>
+          {" "}Filter{" "}
+          </button>
+        <span className="resultsBox filterStringRB">{" "}Filtered: {this.filterNames}
+        </span>
+      </div>
+    );
+  }
 }
 
 export default FilterObject;
