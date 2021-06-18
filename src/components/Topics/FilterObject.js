@@ -34,10 +34,10 @@ class FilterObject extends Component {
     // console.log(inputAge)
 
     if (input === 'names') {
-        this.setState({filteredNames: inputName})
-        console.log(this.filterNames)
+        return this.setState({filteredArray: inputName})
+        // console.log(this.filterNames)
     }else{
-        this.setState({filteredNames: inputAge})
+        return this.setState({filteredArray: inputAge})
     }
 
   }
@@ -52,7 +52,7 @@ class FilterObject extends Component {
         <button className="confirmationButton"onClick={this.filterNames}>
           {" "}Filter{" "}
           </button>
-        <span className="resultsBox filterStringRB">{" "}Filtered: {this.filterNames}
+        <span className="resultsBox filterStringRB">{" "}Filtered: {this.state.filteredArray}
         </span>
       </div>
     );

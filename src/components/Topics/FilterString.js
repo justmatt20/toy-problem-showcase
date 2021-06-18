@@ -4,7 +4,6 @@ class FilterString extends Component {
     constructor() {
         super();
         this.state = {
-            unfilteredArray: [],
             userInput: '',
             filteredArray: [],
             employees: [
@@ -18,19 +17,18 @@ handleChange (val) {
     console.log(val)
 }
 
-filterEmployees = () =>  {
+filterEmployees = (userInput) =>  {
     const employees =  this.state.employees;
     const filteredEmployees = [];
-    const input = this.state.userInput;
+    
 
 
 for (let i=0; i<employees.length; i++) {
-    if( employees[i].includes(input)) {
+    if (employees[i].includes(userInput)) {
         filteredEmployees.push(employees[i]);
-    }return this.setState({filterEmployees: filteredEmployees});
+    }
 }
-
-
+    return this.setState({filteredArray: filteredEmployees});
 }
 
 render() {
@@ -39,8 +37,8 @@ render() {
         <h4> Filter String </h4>
         <span className="puzzleText"> Employees: { JSON.stringify(this.state.employees, null, 10) } </span>
         <input className="inputLine" onChange={ (e) => this.handleChange(e.target.value) }></input>
-        <button className="confirmationButton" onClick={ () => this.filterEmployees }> Filter </button>
-        <span className="resultsBox filterStringRB"> Filtered Employees: { JSON.stringify(this.state.filteredEmployees, null, 10) } </span>
+        <button className="confirmationButton" onClick={ () => this.filterEmployees(this.state.userInput) }> Filter </button>
+        <span className="resultsBox filterStringRB"> Filtered Employees: { JSON.stringify(this.state.filteredArray, null, 10) } </span>
       </div>
     )
   }
